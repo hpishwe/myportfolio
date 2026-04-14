@@ -20,6 +20,9 @@
       --pink: #E77BAE;
       --pink-light: #F48FB1;
       --pink-pale: #FBEAF0;
+      --pink-dark: #9C2C5E;
+      --pink-gradient: linear-gradient(135deg, #E77BAE, #C2527A);
+      --accent-soft: #FFD6E8;
       --rose: #C2527A;
       --brown: #A1887F;
       --brown-dark: #6D4C41;
@@ -175,7 +178,7 @@
 
     .btn-primary {
       padding: 0.8rem 2rem;
-      background: var(--rose);
+      background: var(--pink-gradient);
       color: white;
       border: none;
       border-radius: 100px;
@@ -190,9 +193,9 @@
     }
 
     .btn-primary:hover {
-      background: var(--pink);
+      background: var(--pink-gradient);
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(194, 82, 122, 0.3);
+      box-shadow: 0 8px 24px var(--pink-dark);
     }
 
     .btn-outline {
@@ -885,15 +888,53 @@
     }
 
     .stack-card {
-      background: var(--beige);
-      border-radius: 20px;
-      padding: 1.8rem;
-      transition: all 0.3s;
+      perspective: 1000px;
+      background: transparent;
+      cursor: default;
     }
 
-    .stack-card:hover {
-      background: var(--pink-pale);
-      transform: translateY(-3px);
+    .stack-inner {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+
+    .stack-card:hover .stack-inner {
+      transform: rotateY(180deg);
+    }
+
+    .stack-front,
+    .stack-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 20px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(161, 136, 127, 0.1);
+    }
+
+    .stack-front {
+      background: linear-gradient(135deg, var(--beige), var(--accent-soft));
+    }
+
+    .stack-back {
+      background: var(--pink-gradient);
+      color: white;
+      transform: rotateY(180deg);
+      text-align: center;
+    }
+
+    .stack-back p {
+      font-size: 0.85rem;
+      margin: 0.2rem 0;
+      font-weight: 500;
     }
 
     .stack-category {
@@ -1172,7 +1213,7 @@
     <div class="nav-logo">HP.</div>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
-      <li><a href="#curriculum">Journey</a></li>
+      <li><a href="#hardware">Hardware Journey</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#techstack">Stack</a></li>
@@ -1259,7 +1300,7 @@
           </p>
           <div className="hero-ctas animate-fade-up animate-delay-3">
             <a href="#projects" className="btn-primary">View Projects</a>
-            <a href="#curriculum" className="btn-outline">Explore My Journey</a>
+            <a href="#hardware" className="btn-outline">Explore Hardware Journey</a>
           </div>
 
           <div className="avatar-section animate-fade-up animate-delay-4">
@@ -1350,32 +1391,44 @@
       </section>
     );
 
-    const semesterData = [
-      { sem: "Semester III", side: "left", subjects: ["Digital Electronics", "Analog Electronics", "Engineering Mathematics III", "Data Structures"] },
-      { sem: "Semester IV", side: "right", subjects: ["Microprocessor & Interfacing", "Signals & Systems", "Linear Control Systems", "Computer Networks"] },
-      { sem: "Semester V", side: "left", subjects: ["Smart Sensors & Actuators", "Data Communication", "Microcontroller-Based System Design", "Computer Network & Security"] },
-      { sem: "Semester VI", side: "right", subjects: ["Process Control & Automation", "Embedded System Design", "Digital Signal Processing", "VLSI Design"] },
-      { sem: "Semester VII", side: "left", subjects: ["Computer Controlled & SCADA Systems", "Industrial IoT", "Machine Learning Applications", "Project Work — Phase I"] },
-      { sem: "Semester VIII", side: "right", subjects: ["Advanced Automation Systems", "Wireless Sensor Networks", "Industry Internship / Project", "Final Year Project — Phase II"] },
+    const hardwareJourney = [
+      {
+        title: "PLC Programming & Industrial Automation",
+        desc: "Worked with Mitsubishi iQ-F and iQR PLCs using GX Works 3. Built sequence control logic using ladder programming and Boolean logic for real industrial workflows.",
+        tags: ["PLC", "GX Works 3", "Ladder Logic"]
+      },
+      {
+        title: "HMI & Industrial Interfaces",
+        desc: "Designed HMI panels using GT Designer 3 for real-time monitoring and control of automated systems.",
+        tags: ["HMI", "GT Designer", "UI for Machines"]
+      },
+      {
+        title: "Sensor Integration & Control Systems",
+        desc: "Integrated sensors and actuators into automated pipelines — understanding signal flow from input to action in real environments.",
+        tags: ["Sensors", "Actuators", "Control Systems"]
+      },
+      {
+        title: "Embedded & Microcontroller Systems",
+        desc: "Built systems using Arduino and ESP32 involving communication protocols and real-world device interaction.",
+        tags: ["ESP32", "Arduino", "IoT"]
+      }
     ];
 
-    const Curriculum = () => (
-      <section id="curriculum">
+    const HardwareJourneySection = () => (
+      <section id="hardware" style={{ background: 'rgba(76, 175, 80, 0.04)' }}>
         <div className="section-inner">
-          <p className="section-label">Academic Journey</p>
-          <h2 className="section-title">A curriculum built<br />for the <em>real world.</em></h2>
-          <p style={{ color: 'var(--text-muted)', maxWidth: '520px', fontWeight: 300, lineHeight: 1.8, marginTop: '0.5rem' }}>
-            My engineering path is deeply rooted in embedded systems, automation, and IoT — not just theory, but subjects that map directly to how modern hardware and software systems are built.
+          <p className="section-label" style={{ color: '#2E7D32' }}>Hardware Journey</p>
+          <h2 className="section-title">Systems built<br />for the <em>physical world.</em></h2>
+          <p style={{ color: 'var(--text-muted)', maxWidth: '520px', fontWeight: 300, lineHeight: 1.8, marginTop: '0.5rem', marginBottom: '3rem' }}>
+            My engineering path seamlessly bridges digital logic to physical automation.
           </p>
-          <div className="timeline">
-            {semesterData.map((s, i) => (
-              <div key={i} className={`timeline-item ${s.side === 'right' ? 'right' : ''}`}>
-                <div className="timeline-dot"></div>
-                <div className="timeline-card">
-                  <div className="timeline-sem">{s.sem}</div>
-                  <ul className="timeline-subjects">
-                    {s.subjects.map((sub, j) => <li key={j}>{sub}</li>)}
-                  </ul>
+          <div className="stack-grid">
+            {hardwareJourney.map((item, i) => (
+              <div key={i} className="stack-card" style={{ background: 'var(--white)', padding: '2rem', height: '100%', perspective: 'none', borderRadius: '20px', boxShadow: '0 4px 20px rgba(46,125,50,0.05)', transition: 'transform 0.3s' }}>
+                <h3 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.4rem', color: 'var(--text-dark)', marginBottom: '0.8rem' }}>{item.title}</h3>
+                <p style={{ fontSize: '0.9rem', color: 'var(--text-mid)', lineHeight: 1.6, marginBottom: '1.2rem' }}>{item.desc}</p>
+                <div className="avatar-tags">
+                  {item.tags.map((tag, j) => <span key={j} className="avatar-tag" style={{ background: 'rgba(46,125,50,0.05)', borderColor: 'rgba(46,125,50,0.2)', color: '#2E7D32', fontSize: '0.7rem', padding: '0.3rem 0.8rem', borderRadius: '100px', border: '1px solid' }}>{tag}</span>)}
                 </div>
               </div>
             ))}
@@ -1443,12 +1496,30 @@
     );
 
     const projectsData = [
-      { name: "Smart Vending Machine", desc: "IoT-enabled vending system using ESP32 and Arduino with real-time inventory tracking, RFID payment, and mobile monitoring dashboard.", tags: ["iot", "hardware"], tech: ["ESP32", "Arduino", "RFID", "MQTT", "React Dashboard"], category: "Hardware & IoT" },
-      { name: "Billing Desktop Application", desc: "Full-featured desktop billing system for small businesses — invoice generation, inventory management, customer database, and PDF export.", tags: ["software", "fullstack"], tech: ["Python", "Tkinter", "SQLite", "ReportLab"], category: "Software" },
-      { name: "Student Verification Portal", desc: "Full-stack web portal for document verification workflows with role-based access, approval chains, and email notification integration.", tags: ["fullstack", "software"], tech: ["Node.js", "Express", "MongoDB", "React", "JWT"], category: "Full-Stack" },
-      { name: "Gesture-Controlled System", desc: "Computer vision ML model that interprets hand gestures to control system interfaces — replacing traditional mouse/keyboard input.", tags: ["ml", "software"], tech: ["Python", "OpenCV", "MediaPipe", "TensorFlow"], category: "ML" },
-      { name: "Home Automation Node", desc: "ESP32-based home automation module with web dashboard, voice trigger support, and MQTT-based device communication protocol.", tags: ["iot", "hardware"], tech: ["ESP32", "MQTT", "Node-RED", "HTML/JS"], category: "IoT" },
-      { name: "Full-Stack Notes App", desc: "Collaborative notes platform with real-time sync, rich text editing, tag-based organization, and cross-device user authentication.", tags: ["fullstack", "software"], tech: ["React", "Node.js", "MongoDB", "Socket.io"], category: "Full-Stack" },
+      {
+        name: "Airbnb Microservice Clone",
+        desc: "Scalable booking system with secure payments and RBAC. Built using Spring Boot with REST APIs and Stripe integration.",
+        tags: ["software", "fullstack"],
+        tech: ["Spring Boot", "PostgreSQL", "JWT", "Stripe"]
+      },
+      {
+        name: "Hood (Real-time Chat Platform)",
+        desc: "Anonymous global chat platform with real-time communication and subnet-based room logic.",
+        tags: ["fullstack"],
+        tech: ["React", "Node.js", "Socket.io", "MongoDB"]
+      },
+      {
+        name: "Candidate Verification Portal",
+        desc: "Document verification system with role-based access and automated workflows.",
+        tags: ["fullstack"],
+        tech: ["MERN", "MongoDB", "Auth"]
+      },
+      {
+        name: "Apple Health Classifier",
+        desc: "ML model achieving ~92% accuracy using computer vision on 5000+ images.",
+        tags: ["ml"],
+        tech: ["Python", "OpenCV", "TensorFlow"]
+      }
     ];
 
     const Projects = () => {
@@ -1514,12 +1585,15 @@
           <div className="stack-grid">
             {stackGroups.map((g, i) => (
               <div key={i} className="stack-card">
-                <div className="stack-category">
-                  <span className="stack-category-icon">{g.icon}</span>
-                  <span className="stack-category-name">{g.name}</span>
-                </div>
-                <div className="stack-pills">
-                  {g.skills.map((s, j) => <span key={j} className="stack-pill">{s}</span>)}
+                <div className="stack-inner">
+                  <div className="stack-front">
+                    <span style={{ fontSize: '2.5rem', marginBottom: '0.8rem' }}>{g.icon}</span>
+                    <h3 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.4rem', color: 'var(--text-dark)' }}>{g.name}</h3>
+                  </div>
+                  <div className="stack-back">
+                    <h4 style={{ marginBottom: '0.8rem', fontFamily: 'Cormorant Garamond, serif', fontSize: '1.2rem', opacity: 0.9 }}>{g.name} Skills</h4>
+                    {g.skills.map((skill, j) => <p key={j}>{skill}</p>)}
+                  </div>
                 </div>
               </div>
             ))}
@@ -1591,7 +1665,7 @@
         <FloatingBackBtn />
         <AvatarHero />
         <About />
-        <Curriculum />
+        <HardwareJourneySection />
         <Experience />
         <Projects />
         <TechStack />
