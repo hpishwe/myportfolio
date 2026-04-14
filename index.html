@@ -1,0 +1,1607 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Harshita Pishwe — Engineer & Builder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.development.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
+  <style>
+    :root {
+      --beige: #F5F0E8;
+      --beige-dark: #EDE6D6;
+      --pink: #E77BAE;
+      --pink-light: #F48FB1;
+      --pink-pale: #FBEAF0;
+      --rose: #C2527A;
+      --brown: #A1887F;
+      --brown-dark: #6D4C41;
+      --text-dark: #2C1A12;
+      --text-mid: #5C3D2E;
+      --text-muted: #9A7B6F;
+      --white: #FFFDF9;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--beige);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+
+    .font-display {
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .font-playfair {
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--beige-dark);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--pink);
+      border-radius: 3px;
+    }
+
+    /* Nav */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      background: rgba(245, 240, 232, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(231, 123, 174, 0.15);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--rose);
+      letter-spacing: 0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--text-mid);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--pink);
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      background: var(--beige);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 6rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg-blob {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(231, 123, 174, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--pink);
+      margin-bottom: 1rem;
+    }
+
+    .hero-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      font-weight: 300;
+      line-height: 1.0;
+      text-align: center;
+      color: var(--text-dark);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-headline em {
+      font-style: italic;
+      color: var(--pink);
+    }
+
+    .hero-sub {
+      max-width: 560px;
+      text-align: center;
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: var(--text-mid);
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 4rem;
+    }
+
+    .btn-primary {
+      padding: 0.8rem 2rem;
+      background: var(--rose);
+      color: white;
+      border: none;
+      border-radius: 100px;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background: var(--pink);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(194, 82, 122, 0.3);
+    }
+
+    .btn-outline {
+      padding: 0.8rem 2rem;
+      background: transparent;
+      color: var(--rose);
+      border: 1.5px solid var(--rose);
+      border-radius: 100px;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-outline:hover {
+      background: var(--rose);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    /* Avatar Scroll Section */
+    .avatar-section {
+      width: 100%;
+      max-width: 900px;
+      background: var(--white);
+      border-radius: 24px;
+      padding: 2.5rem 2rem 0;
+      box-shadow: 0 4px 40px rgba(161, 136, 127, 0.12);
+      /* Removed overflow: hidden so avatars aren't cut */
+    }
+
+    .avatar-scroll-hint {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .avatar-track {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding-bottom: 0;
+      margin-top: 1.5rem;
+    }
+
+    .avatar-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards;
+    }
+
+    .avatar-item:nth-child(1) {
+      animation-delay: 0.2s;
+    }
+
+    .avatar-item:nth-child(2) {
+      animation-delay: 0.4s;
+    }
+
+    .avatar-item:nth-child(3) {
+      animation-delay: 0.6s;
+    }
+
+    .avatar-item:nth-child(4) {
+      animation-delay: 0.8s;
+    }
+
+    .avatar-item:nth-child(5) {
+      animation-delay: 1s;
+    }
+
+    .avatar-item:hover {
+      transform: translateY(-8px) !important;
+    }
+
+    .avatar-item.active {
+      transform: translateY(-12px) !important;
+    }
+
+    .avatar-img-wrap {
+      width: 110px;
+      height: 130px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .avatar-img {
+      width: 110px;
+      height: auto;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      filter: drop-shadow(0 0 0 transparent);
+    }
+
+    .avatar-item.active .avatar-img {
+      transform: scale(1.25) translateY(-8px);
+      filter: drop-shadow(0 15px 25px rgba(231, 123, 174, 0.6));
+    }
+
+    .avatar-item:hover .avatar-img {
+      transform: scale(1.15) translateY(-5px);
+      filter: drop-shadow(0 15px 25px rgba(231, 123, 174, 0.5));
+    }
+
+    /* Floating Back Button styles */
+    .fab-back {
+      position: fixed;
+      left: 2rem;
+      bottom: 2rem;
+      z-index: 1000;
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      background: var(--pink);
+      color: white;
+      border: none;
+      box-shadow: 0 8px 30px rgba(231, 123, 174, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .fab-back:hover {
+      transform: translateY(-5px);
+      background: var(--rose);
+    }
+
+    .avatar-emoji {
+      font-size: 3.5rem;
+      line-height: 1;
+    }
+
+    .avatar-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--text-mid);
+      text-align: center;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+
+    .avatar-item.active .avatar-label {
+      color: var(--rose);
+    }
+
+    .avatar-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: transparent;
+      transition: background 0.3s;
+    }
+
+    .avatar-item.active .avatar-dot {
+      background: var(--pink);
+    }
+
+    .wave-divider {
+      width: 100%;
+      margin-top: 1.5rem;
+    }
+
+    /* Avatar Detail Panel */
+    .avatar-detail {
+      background: linear-gradient(135deg, var(--pink-pale) 0%, var(--beige) 100%);
+      border-top: 1px solid rgba(231, 123, 174, 0.2);
+      padding: 2rem;
+      min-height: 180px;
+      transition: all 0.4s ease;
+    }
+
+    .avatar-detail-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--rose);
+      margin-bottom: 0.5rem;
+    }
+
+    .avatar-detail-desc {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--text-mid);
+      line-height: 1.8;
+      max-width: 600px;
+    }
+
+    .avatar-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .avatar-tag {
+      padding: 0.3rem 0.8rem;
+      background: white;
+      border: 1px solid rgba(231, 123, 174, 0.3);
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--rose);
+    }
+
+    /* Section styles */
+    section {
+      padding: 6rem 2rem;
+    }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--pink);
+      margin-bottom: 0.8rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 300;
+      color: var(--text-dark);
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--pink);
+    }
+
+    /* About */
+    #about {
+      background: var(--white);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      margin-top: 3rem;
+    }
+
+    .about-text p {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--text-mid);
+      line-height: 1.9;
+      margin-bottom: 1.2rem;
+    }
+
+    .about-text p strong {
+      font-weight: 500;
+      color: var(--text-dark);
+    }
+
+    .about-hobbies {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .hobby-card {
+      background: var(--beige);
+      border-radius: 16px;
+      padding: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s;
+      cursor: default;
+      border: 1px solid transparent;
+    }
+
+    .hobby-card:hover {
+      background: var(--pink-pale);
+      border-color: rgba(231, 123, 174, 0.3);
+      transform: translateY(-3px);
+    }
+
+    .hobby-icon {
+      font-size: 1.6rem;
+    }
+
+    .hobby-name {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-mid);
+      text-align: center;
+    }
+
+    .about-visual {
+      position: relative;
+    }
+
+    .about-card-big {
+      background: var(--beige);
+      border-radius: 24px;
+      padding: 2.5rem;
+      border: 1px solid rgba(161, 136, 127, 0.2);
+    }
+
+    .about-stat {
+      margin-bottom: 1.5rem;
+    }
+
+    .about-stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--rose);
+      line-height: 1;
+    }
+
+    .about-stat-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+    }
+
+    /* Timeline */
+    #curriculum {
+      background: var(--beige);
+    }
+
+    .timeline {
+      position: relative;
+      margin-top: 3rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--pink) 10%, var(--pink) 90%, transparent);
+      transform: translateX(-50%);
+    }
+
+    .timeline-item {
+      display: flex;
+      justify-content: flex-end;
+      width: 50%;
+      padding-right: 3rem;
+      margin-bottom: 2.5rem;
+      position: relative;
+    }
+
+    .timeline-item.right {
+      justify-content: flex-start;
+      padding-right: 0;
+      padding-left: 3rem;
+      margin-left: 50%;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      right: -8px;
+      top: 1.2rem;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: var(--pink);
+      border: 3px solid var(--beige);
+      z-index: 2;
+    }
+
+    .timeline-item.right .timeline-dot {
+      left: -8px;
+      right: auto;
+    }
+
+    .timeline-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 1.5rem;
+      max-width: 380px;
+      box-shadow: 0 2px 20px rgba(161, 136, 127, 0.1);
+      transition: all 0.3s;
+    }
+
+    .timeline-card:hover {
+      box-shadow: 0 8px 30px rgba(231, 123, 174, 0.15);
+      transform: translateY(-3px);
+    }
+
+    .timeline-sem {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      color: var(--pink);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-subjects {
+      list-style: none;
+    }
+
+    .timeline-subjects li {
+      font-size: 0.88rem;
+      color: var(--text-mid);
+      padding: 0.3rem 0;
+      border-bottom: 1px solid rgba(161, 136, 127, 0.1);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .timeline-subjects li:last-child {
+      border-bottom: none;
+    }
+
+    .timeline-subjects li::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--pink-light);
+      flex-shrink: 0;
+    }
+
+    /* Experience */
+    #experience {
+      background: var(--white);
+    }
+
+    .exp-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .exp-card {
+      background: var(--beige);
+      border-radius: 20px;
+      padding: 2rem 2.5rem;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 1.5rem;
+      align-items: start;
+      border: 1px solid transparent;
+      transition: all 0.3s;
+    }
+
+    .exp-card:hover {
+      border-color: rgba(231, 123, 174, 0.25);
+      background: var(--pink-pale);
+    }
+
+    .exp-icon {
+      width: 52px;
+      height: 52px;
+      background: var(--pink-pale);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      flex-shrink: 0;
+    }
+
+    .exp-company {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.3rem;
+    }
+
+    .exp-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .exp-desc {
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: var(--text-mid);
+      line-height: 1.8;
+    }
+
+    .exp-outcomes {
+      margin-top: 0.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .exp-outcome {
+      font-size: 0.82rem;
+      color: var(--text-mid);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .exp-outcome::before {
+      content: '→';
+      color: var(--pink);
+      font-weight: 500;
+      flex-shrink: 0;
+    }
+
+    .exp-date {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+      font-style: italic;
+    }
+
+    .exp-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      background: var(--rose);
+      color: white;
+      border-radius: 100px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      margin-top: 0.8rem;
+    }
+
+    /* Projects */
+    #projects {
+      background: var(--beige);
+    }
+
+    .filter-bar {
+      display: flex;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+      margin: 2rem 0;
+    }
+
+    .filter-btn {
+      padding: 0.4rem 1.2rem;
+      border-radius: 100px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      border: 1.5px solid rgba(161, 136, 127, 0.3);
+      background: transparent;
+      cursor: pointer;
+      color: var(--text-mid);
+      transition: all 0.2s;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: var(--rose);
+      color: white;
+      border-color: var(--rose);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: var(--white);
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(161, 136, 127, 0.15);
+      transition: all 0.3s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(231, 123, 174, 0.15);
+    }
+
+    .project-header {
+      padding: 1.8rem 1.8rem 1rem;
+    }
+
+    .project-tag-row {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .project-tag {
+      padding: 0.2rem 0.7rem;
+      border-radius: 100px;
+      font-size: 0.7rem;
+      font-weight: 500;
+    }
+
+    .tag-software {
+      background: #EDE8FF;
+      color: #5C3AB5;
+    }
+
+    .tag-hardware {
+      background: #E8F5E9;
+      color: #2E7D32;
+    }
+
+    .tag-iot {
+      background: #E3F2FD;
+      color: #1565C0;
+    }
+
+    .tag-ml {
+      background: #FFF3E0;
+      color: #E65100;
+    }
+
+    .tag-fullstack {
+      background: var(--pink-pale);
+      color: var(--rose);
+    }
+
+    .project-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .project-desc {
+      font-size: 0.86rem;
+      font-weight: 300;
+      color: var(--text-mid);
+      line-height: 1.8;
+    }
+
+    .project-footer {
+      padding: 1rem 1.8rem 1.5rem;
+      border-top: 1px solid rgba(161, 136, 127, 0.1);
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .project-tech {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      padding: 0.2rem 0.6rem;
+      background: var(--beige);
+      border-radius: 6px;
+    }
+
+    /* Tech Stack */
+    #techstack {
+      background: var(--white);
+    }
+
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .stack-card {
+      background: var(--beige);
+      border-radius: 20px;
+      padding: 1.8rem;
+      transition: all 0.3s;
+    }
+
+    .stack-card:hover {
+      background: var(--pink-pale);
+      transform: translateY(-3px);
+    }
+
+    .stack-category {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .stack-category-icon {
+      font-size: 1.3rem;
+    }
+
+    .stack-category-name {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--rose);
+    }
+
+    .stack-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .stack-pill {
+      padding: 0.4rem 1rem;
+      background: white;
+      border-radius: 100px;
+      font-size: 0.82rem;
+      font-weight: 400;
+      color: var(--text-mid);
+      border: 1px solid rgba(161, 136, 127, 0.2);
+      transition: all 0.2s;
+    }
+
+    .stack-pill:hover {
+      border-color: var(--pink);
+      color: var(--rose);
+    }
+
+    /* Hobbies */
+    #hobbies {
+      background: var(--beige);
+    }
+
+    .hobbies-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .hobby-big-card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1rem;
+      border: 1px solid transparent;
+      transition: all 0.35s;
+      cursor: default;
+    }
+
+    .hobby-big-card:hover {
+      border-color: var(--pink);
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(231, 123, 174, 0.12);
+    }
+
+    .hobby-big-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: var(--beige);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+    }
+
+    .hobby-big-card:hover .hobby-big-icon {
+      background: var(--pink-pale);
+    }
+
+    .hobby-big-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    .hobby-big-desc {
+      font-size: 0.84rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--text-dark);
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .footer-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--pink-light);
+      margin-bottom: 1rem;
+    }
+
+    .footer-tagline {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.4);
+      margin-bottom: 2rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      margin-bottom: 3rem;
+    }
+
+    .footer-links a {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.5);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: var(--pink-light);
+    }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Animations */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    .animate-fade-up {
+      animation: fadeUp 0.8s ease forwards;
+    }
+
+    .animate-delay-1 {
+      animation-delay: 0.15s;
+      opacity: 0;
+    }
+
+    .animate-delay-2 {
+      animation-delay: 0.3s;
+      opacity: 0;
+    }
+
+    .animate-delay-3 {
+      animation-delay: 0.45s;
+      opacity: 0;
+    }
+
+    .animate-delay-4 {
+      animation-delay: 0.6s;
+      opacity: 0;
+    }
+
+    .animate-delay-5 {
+      animation-delay: 0.75s;
+      opacity: 0;
+    }
+
+    .float-anim {
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @media (max-width: 768px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline::before {
+        left: 0;
+      }
+
+      .timeline-item {
+        width: 100%;
+        padding-left: 2rem;
+        padding-right: 0;
+        justify-content: flex-start;
+      }
+
+      .timeline-item.right {
+        margin-left: 0;
+        padding-left: 2rem;
+      }
+
+      .timeline-dot {
+        left: -8px !important;
+        right: auto !important;
+      }
+
+      .exp-card {
+        grid-template-columns: auto 1fr;
+      }
+
+      .exp-date {
+        grid-column: 1 / -1;
+      }
+
+      .hobbies-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .avatar-track {
+        gap: 0.8rem;
+      }
+
+      .avatar-img-wrap {
+        width: 65px;
+        height: 80px;
+      }
+
+      .avatar-emoji {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="nav-logo">HP.</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#curriculum">Journey</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#techstack">Stack</a></li>
+      <li><a href="#hobbies">Beyond Code</a></li>
+    </ul>
+  </nav>
+
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+
+    const avatarData = [
+      {
+        id: 0,
+        img: "avatars/main intro.png",
+        color: "#F4C0D1",
+        label: "About Me",
+        title: "Who I Am",
+        desc: "Hi, I’m Harshita — I love building things that work, matter, and make an impact...",
+        tags: ["Creative", "Engineer", "Builder"]
+      },
+      {
+        id: 1,
+        img: "avatars/projects.png",
+        color: "#C8E6C9",
+        label: "Projects",
+        title: "Things I've Built",
+        desc: "From IoT vending machines to full-stack systems...",
+        tags: ["ESP32", "Full Stack", "ML"]
+      },
+      {
+        id: 2,
+        img: "avatars/experience.png",
+        color: "#E3F2FD",
+        label: "Experience",
+        title: "Where I've Worked",
+        desc: "Internships and real-world work...",
+        tags: ["React", "Node", "Teams"]
+      },
+      {
+        id: 3,
+        img: "avatars/hardware.png",
+        color: "#EDE8FF",
+        label: "Hardware",
+        title: "Hardware & Automation",
+        desc: "PLC, embedded systems, automation...",
+        tags: ["PLC", "Arduino", "Sensors"]
+      },
+      {
+        id: 4,
+        img: "avatars/hobbies and soft skills.png",
+        color: "#FFF3E0",
+        label: "Beyond Code",
+        title: "Creative Side",
+        desc: "Kathak, cinematography, storytelling...",
+        tags: ["Dance", "Creativity"]
+      }
+    ];
+
+    const sectionMap = {
+      0: "about",
+      1: "projects",
+      2: "experience",
+      3: "techstack",
+      4: "hobbies"
+    };
+
+    const AvatarHero = () => {
+      const [active, setActive] = useState(0);
+
+      return (
+        <section className="hero">
+          <div className="hero-bg-blob" style={{ width: '600px', height: '600px', top: '-100px', right: '-100px', opacity: 0.7 }}></div>
+          <div className="hero-bg-blob" style={{ width: '400px', height: '400px', bottom: '-50px', left: '-80px', opacity: 0.5 }}></div>
+
+          <p className="hero-eyebrow animate-fade-up">Engineering Student · Builder · Creator</p>
+          <h1 className="hero-headline animate-fade-up animate-delay-1">
+            Hello, I'm Harshita
+          </h1>
+          <p className="hero-sub animate-fade-up animate-delay-2" style={{ fontSize: '1.2rem', color: 'var(--text-dark)' }}>
+            I build things that work, matter, and make an impact.<br />
+
+          </p>
+          <div className="hero-ctas animate-fade-up animate-delay-3">
+            <a href="#projects" className="btn-primary">View Projects</a>
+            <a href="#curriculum" className="btn-outline">Explore My Journey</a>
+          </div>
+
+          <div className="avatar-section animate-fade-up animate-delay-4">
+
+            <div className="avatar-track">
+              {avatarData.map((av) => (
+                <div
+                  key={av.id}
+                  className={`avatar-item ${active === av.id ? 'active' : ''}`}
+                  onClick={() => {
+                    setActive(av.id);
+                    document.getElementById(sectionMap[av.id])?.scrollIntoView({
+                      behavior: "smooth"
+                    });
+                  }}
+                >
+                  <div className="avatar-img-wrap">
+                    <img src={av.img} className="avatar-img" alt={av.label} />
+                  </div>
+                  <span className="avatar-label">{av.label}</span>
+                  <div className="avatar-dot"></div>
+                </div>
+              ))}
+            </div>
+
+            <svg className="wave-divider" viewBox="0 0 900 50" preserveAspectRatio="none" style={{ height: '30px', display: 'block' }}>
+              <path d={`M0,25 C150,50 300,0 450,25 C600,50 750,0 900,25 L900,50 L0,50 Z`}
+                fill={avatarData[active].color} opacity="0.6" />
+            </svg>
+
+            <div className="avatar-detail" style={{ background: `linear-gradient(135deg, ${avatarData[active].color}55 0%, #FFFDF9 100%)` }}>
+              <div className="avatar-detail-title">{avatarData[active].title}</div>
+              <div className="avatar-detail-desc">{avatarData[active].desc}</div>
+              <div className="avatar-tags">
+                {avatarData[active].tags.map((t, i) => <span key={i} className="avatar-tag">{t}</span>)}
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    };
+
+    const About = () => (
+      <section id="about">
+        <div className="section-inner">
+          <p className="section-label">Who I Am</p>
+          <h2 className="section-title">An engineer who builds<br /><em>real things</em>, not just demos.</h2>
+          <div className="about-grid">
+            <div className="about-text">
+              <p>I'm <strong>Harshita Pishwe</strong>, an Electronics & Communication engineering student moving into my next academic phase with a clear direction — I want to build systems that bridge the physical and digital world.</p>
+              <p>My work spans <strong>frontend development</strong>, <strong>full-stack architecture</strong>, <strong>embedded systems</strong>, and <strong>industrial automation</strong>. I've interned in real software teams, trained on actual PLCs, and built hardware prototypes from scratch.</p>
+              <p>I'm not drawn to academic demos. I want products that users actually touch, systems that factories actually run, and code that ships to production. That philosophy shows up in everything I build.</p>
+              <p>When I'm not engineering, you'll find me exploring creativity in other forms — dance, cinematography, writing, or just reading something that changes how I think.</p>
+              <div className="about-hobbies">
+                {[['📚', 'Reading'], ['💃', 'Kathak'], ['🎬', 'Cinematography'], ['🎵', 'Singing'], ['✂️', 'Video Editing'], ['📓', 'Journalling']].map(([icon, name]) => (
+                  <div key={name} className="hobby-card">
+                    <span className="hobby-icon">{icon}</span>
+                    <span className="hobby-name">{name}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="about-visual">
+              <div className="about-card-big">
+                <div style={{ marginBottom: '2rem' }}>
+                  <div className="about-stat">
+                    <div className="about-stat-num">3+</div>
+                    <div className="about-stat-label">Internships & Industrial Trainings</div>
+                  </div>
+                  <div className="about-stat">
+                    <div className="about-stat-num">10+</div>
+                    <div className="about-stat-label">Projects across software, hardware & ML</div>
+                  </div>
+                  <div className="about-stat">
+                    <div className="about-stat-num">2</div>
+                    <div className="about-stat-label">Domains: Software Engineering + Embedded/Automation</div>
+                  </div>
+                </div>
+                <div style={{ borderTop: '1px solid rgba(161,136,127,0.2)', paddingTop: '1.5rem' }}>
+                  <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontStyle: 'italic', lineHeight: '1.8' }}>
+                    "I love building things that work, matter, and make an impact — whether that's a clean UI, a reliable API, or a circuit that responds to the real world."
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+
+    const semesterData = [
+      { sem: "Semester III", side: "left", subjects: ["Digital Electronics", "Analog Electronics", "Engineering Mathematics III", "Data Structures"] },
+      { sem: "Semester IV", side: "right", subjects: ["Microprocessor & Interfacing", "Signals & Systems", "Linear Control Systems", "Computer Networks"] },
+      { sem: "Semester V", side: "left", subjects: ["Smart Sensors & Actuators", "Data Communication", "Microcontroller-Based System Design", "Computer Network & Security"] },
+      { sem: "Semester VI", side: "right", subjects: ["Process Control & Automation", "Embedded System Design", "Digital Signal Processing", "VLSI Design"] },
+      { sem: "Semester VII", side: "left", subjects: ["Computer Controlled & SCADA Systems", "Industrial IoT", "Machine Learning Applications", "Project Work — Phase I"] },
+      { sem: "Semester VIII", side: "right", subjects: ["Advanced Automation Systems", "Wireless Sensor Networks", "Industry Internship / Project", "Final Year Project — Phase II"] },
+    ];
+
+    const Curriculum = () => (
+      <section id="curriculum">
+        <div className="section-inner">
+          <p className="section-label">Academic Journey</p>
+          <h2 className="section-title">A curriculum built<br />for the <em>real world.</em></h2>
+          <p style={{ color: 'var(--text-muted)', maxWidth: '520px', fontWeight: 300, lineHeight: 1.8, marginTop: '0.5rem' }}>
+            My engineering path is deeply rooted in embedded systems, automation, and IoT — not just theory, but subjects that map directly to how modern hardware and software systems are built.
+          </p>
+          <div className="timeline">
+            {semesterData.map((s, i) => (
+              <div key={i} className={`timeline-item ${s.side === 'right' ? 'right' : ''}`}>
+                <div className="timeline-dot"></div>
+                <div className="timeline-card">
+                  <div className="timeline-sem">{s.sem}</div>
+                  <ul className="timeline-subjects">
+                    {s.subjects.map((sub, j) => <li key={j}>{sub}</li>)}
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+
+    const Experience = () => (
+      <section id="experience">
+        <div className="section-inner">
+          <p className="section-label">Work & Training</p>
+          <h2 className="section-title">Proof I can work in<br /><em>real environments.</em></h2>
+          <div className="exp-grid">
+            <div className="exp-card">
+              <div className="exp-icon">💻</div>
+              <div>
+                <div className="exp-company">Frontend Development Internship</div>
+                <div className="exp-title">Frontend Developer Intern</div>
+                <div className="exp-desc">Worked within a product team building and maintaining web interfaces using modern frontend frameworks. Contributed to component libraries, implemented responsive designs, and participated in code reviews and agile sprints.</div>
+                <div className="exp-outcomes">
+                  <div className="exp-outcome">Shipped reusable React components used across multiple product screens</div>
+                  <div className="exp-outcome">Improved page load performance through optimized asset handling</div>
+                  <div className="exp-outcome">Collaborated with designers using Figma specs in a production workflow</div>
+                </div>
+                <span className="exp-badge">Software Engineering</span>
+              </div>
+              <div className="exp-date">2023</div>
+            </div>
+
+            <div className="exp-card">
+              <div className="exp-icon">📱</div>
+              <div>
+                <div className="exp-company">App Development Internship</div>
+                <div className="exp-title">Mobile App Developer Intern</div>
+                <div className="exp-desc">Built and shipped features for a mobile application targeting real end-users. Worked across Flutter and integrated with backend REST APIs, handling state management and UI logic in a team setting with version control.</div>
+                <div className="exp-outcomes">
+                  <div className="exp-outcome">Developed complete app screens from Figma mockups to working Flutter code</div>
+                  <div className="exp-outcome">Integrated REST APIs for live data fetching and user authentication flows</div>
+                  <div className="exp-outcome">Tested and debugged across Android and iOS device profiles</div>
+                </div>
+                <span className="exp-badge">Mobile Development</span>
+              </div>
+              <div className="exp-date">2024</div>
+            </div>
+
+            <div className="exp-card" style={{ background: 'linear-gradient(135deg, #E8F5E9 0%, var(--beige) 100%)' }}>
+              <div className="exp-icon">⚡</div>
+              <div>
+                <div className="exp-company">Mitsubishi Electric — Industrial Automation Training</div>
+                <div className="exp-title">Industrial Automation Trainee</div>
+                <div className="exp-desc">Hands-on training with Mitsubishi Electric PLC systems, covering real automation environments. Programmed ladder logic, configured HMI panels, and understood full automation workflows from sensor input to actuator output in an industrial context.</div>
+                <div className="exp-outcomes">
+                  <div className="exp-outcome">Programmed Mitsubishi PLCs using GX Works with ladder and structured text</div>
+                  <div className="exp-outcome">Configured HMI displays for real-time process monitoring and control</div>
+                  <div className="exp-outcome">Worked with industrial sensors, actuators, and motion control systems</div>
+                </div>
+                <span className="exp-badge" style={{ background: '#2E7D32' }}>Industrial / Hardware</span>
+              </div>
+              <div className="exp-date">2024</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+
+    const projectsData = [
+      { name: "Smart Vending Machine", desc: "IoT-enabled vending system using ESP32 and Arduino with real-time inventory tracking, RFID payment, and mobile monitoring dashboard.", tags: ["iot", "hardware"], tech: ["ESP32", "Arduino", "RFID", "MQTT", "React Dashboard"], category: "Hardware & IoT" },
+      { name: "Billing Desktop Application", desc: "Full-featured desktop billing system for small businesses — invoice generation, inventory management, customer database, and PDF export.", tags: ["software", "fullstack"], tech: ["Python", "Tkinter", "SQLite", "ReportLab"], category: "Software" },
+      { name: "Student Verification Portal", desc: "Full-stack web portal for document verification workflows with role-based access, approval chains, and email notification integration.", tags: ["fullstack", "software"], tech: ["Node.js", "Express", "MongoDB", "React", "JWT"], category: "Full-Stack" },
+      { name: "Gesture-Controlled System", desc: "Computer vision ML model that interprets hand gestures to control system interfaces — replacing traditional mouse/keyboard input.", tags: ["ml", "software"], tech: ["Python", "OpenCV", "MediaPipe", "TensorFlow"], category: "ML" },
+      { name: "Home Automation Node", desc: "ESP32-based home automation module with web dashboard, voice trigger support, and MQTT-based device communication protocol.", tags: ["iot", "hardware"], tech: ["ESP32", "MQTT", "Node-RED", "HTML/JS"], category: "IoT" },
+      { name: "Full-Stack Notes App", desc: "Collaborative notes platform with real-time sync, rich text editing, tag-based organization, and cross-device user authentication.", tags: ["fullstack", "software"], tech: ["React", "Node.js", "MongoDB", "Socket.io"], category: "Full-Stack" },
+    ];
+
+    const Projects = () => {
+      const [activeFilter, setActiveFilter] = useState("all");
+      const filters = ["all", "software", "hardware", "iot", "ml", "fullstack"];
+      const visible = projectsData.filter(p => activeFilter === "all" || p.tags.includes(activeFilter));
+
+      const tagClass = (tag) => {
+        const map = { software: 'tag-software', hardware: 'tag-hardware', iot: 'tag-iot', ml: 'tag-ml', fullstack: 'tag-fullstack' };
+        return map[tag] || '';
+      };
+
+      return (
+        <section id="projects">
+          <div className="section-inner">
+            <p className="section-label">Built Things</p>
+            <h2 className="section-title">Projects that show<br />what I can <em>actually</em> do.</h2>
+            <div className="filter-bar">
+              {filters.map(f => (
+                <button key={f} className={`filter-btn ${activeFilter === f ? 'active' : ''}`} onClick={() => setActiveFilter(f)}>
+                  {f === 'all' ? 'All' : f === 'iot' ? 'IoT' : f === 'ml' ? 'ML' : f === 'fullstack' ? 'Full-Stack' : f.charAt(0).toUpperCase() + f.slice(1)}
+                </button>
+              ))}
+            </div>
+            <div className="projects-grid">
+              {visible.map((p, i) => (
+                <div key={i} className="project-card">
+                  <div className="project-header">
+                    <div className="project-tag-row">
+                      {p.tags.map((t, j) => <span key={j} className={`project-tag ${tagClass(t)}`}>{t === 'iot' ? 'IoT' : t === 'ml' ? 'ML' : t === 'fullstack' ? 'Full-Stack' : t.charAt(0).toUpperCase() + t.slice(1)}</span>)}
+                    </div>
+                    <div className="project-name">{p.name}</div>
+                    <div className="project-desc">{p.desc}</div>
+                  </div>
+                  <div className="project-footer">
+                    {p.tech.map((t, j) => <span key={j} className="project-tech">{t}</span>)}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    };
+
+    const stackGroups = [
+      { icon: "🎨", name: "Frontend", skills: ["React", "Flutter", "HTML5", "CSS3", "Tailwind CSS", "JavaScript", "TypeScript"] },
+      { icon: "⚙️", name: "Backend", skills: ["Node.js", "Express.js", "Python", "REST APIs", "Socket.io", "JWT Auth"] },
+      { icon: "🗄️", name: "Databases", skills: ["MongoDB", "MySQL", "SQLite", "Firebase", "Mongoose"] },
+      { icon: "🔌", name: "Embedded & Hardware", skills: ["ESP32", "Arduino", "Raspberry Pi", "UART/SPI/I2C", "C/C++", "Assembly"] },
+      { icon: "🏭", name: "Automation & IoT", skills: ["PLC (Mitsubishi)", "SCADA", "MQTT", "Ladder Logic", "HMI", "Node-RED", "GX Works"] },
+      { icon: "🛠️", name: "Tools & Workflow", skills: ["Git", "GitHub", "Figma", "VS Code", "Postman", "Linux", "Docker"] },
+    ];
+
+    const TechStack = () => (
+      <section id="techstack">
+        <div className="section-inner">
+          <p className="section-label">Skills & Tools</p>
+          <h2 className="section-title">I contribute on <em>both<br />sides</em> of the stack.</h2>
+          <p style={{ color: 'var(--text-muted)', maxWidth: '500px', fontWeight: 300, lineHeight: 1.8, marginTop: '0.5rem' }}>
+            Software engineer by training, hardware builder by choice, automation engineer by experience. I don't have to choose a lane.
+          </p>
+          <div className="stack-grid">
+            {stackGroups.map((g, i) => (
+              <div key={i} className="stack-card">
+                <div className="stack-category">
+                  <span className="stack-category-icon">{g.icon}</span>
+                  <span className="stack-category-name">{g.name}</span>
+                </div>
+                <div className="stack-pills">
+                  {g.skills.map((s, j) => <span key={j} className="stack-pill">{s}</span>)}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+
+    const hobbiesData = [
+      { icon: "📚", name: "Reading", desc: "From philosophy to fiction — books are where I recalibrate my thinking and find unexpected connections to engineering." },
+      { icon: "💃", name: "Kathak", desc: "A classical Indian dance form that has taught me discipline, expression, and the beauty of systems with deep structure." },
+      { icon: "🎬", name: "Cinematography", desc: "I'm drawn to how a frame is composed — light, motion, story. It directly shapes how I think about UI and visual design." },
+      { icon: "✂️", name: "Video Editing", desc: "Cutting footage, building narratives, syncing to rhythm — editing is just system design with a timeline." },
+      { icon: "🎵", name: "Singing", desc: "Music is another language. It keeps me emotionally grounded and creatively sharp between coding sessions." },
+      { icon: "📓", name: "Journalling", desc: "I write to think. My journal is where ideas, reflections, and half-formed project plans live until they're ready." },
+    ];
+
+    const Hobbies = () => (
+      <section id="hobbies">
+        <div className="section-inner">
+          <p className="section-label">Beyond Engineering</p>
+          <h2 className="section-title">Discipline, creativity,<br /><em>and expression.</em></h2>
+          <p style={{ color: 'var(--text-muted)', maxWidth: '520px', fontWeight: 300, lineHeight: 1.8, marginTop: '0.5rem', marginBottom: 0 }}>
+            The best engineers I admire are multi-dimensional. These are the things that make me who I am outside the IDE.
+          </p>
+          <div className="hobbies-grid">
+            {hobbiesData.map((h, i) => (
+              <div key={i} className="hobby-big-card">
+                <div className="hobby-big-icon">{h.icon}</div>
+                <div className="hobby-big-name">{h.name}</div>
+                <div className="hobby-big-desc">{h.desc}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+
+    const Footer = () => (
+      <footer>
+        <div className="footer-name">Harshita Pishwe</div>
+        <div className="footer-tagline">Software · Embedded · Automation · Products</div>
+        <div className="footer-links">
+          <a href="mailto:harshita@example.com">Email</a>
+          <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+          <a href="https://github.com" target="_blank">GitHub</a>
+          <a href="#projects">Projects</a>
+        </div>
+        <div className="footer-copy">© 2025 Harshita Pishwe. Designed with intention.</div>
+      </footer>
+    );
+    const FloatingBackBtn = () => {
+      const [show, setShow] = useState(false);
+      useEffect(() => {
+        const handleScroll = () => setShow(window.scrollY > 400);
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+      }, []);
+      if (!show) return null;
+      return (
+        <button className="fab-back animate-fade-up" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} title="Back to Avatars">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 19V5M5 12l7-7 7 7" /></svg>
+        </button>
+      );
+    };
+
+    const App = () => (
+      <>
+        <FloatingBackBtn />
+        <AvatarHero />
+        <About />
+        <Curriculum />
+        <Experience />
+        <Projects />
+        <TechStack />
+        <Hobbies />
+        <Footer />
+      </>
+    );
+
+    ReactDOM.render(<App />, document.getElementById('root'));
+  </script>
+</body>
+
+</html>
